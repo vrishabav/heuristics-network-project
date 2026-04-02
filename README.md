@@ -1,1 +1,1 @@
-# heuristics-network-project
+Submission files for Heuristics and Network Guild Application
