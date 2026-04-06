@@ -1,4 +1,4 @@
-
+<img width="617" height="283" alt="image" src="https://github.com/user-attachments/assets/bd84180d-e776-44d6-8705-0ac4af624727" />
 # Heuristics Guild Application: Contest Writeup
 
 ## 1. Understanding the Problem
@@ -100,7 +100,7 @@ I attempted to introduce several logical "optimizations" but these resulted in a
 
 ## 5. Potential Future Directions
 
-1. **Initial Temperature Calibration:** Currently, the initial temperature $T=500$ is a hardcoded default. A potential better approach would be to sample 200–500 random moves without applying them, compute the average absolute delta, and dynamically set $T0 = \text{average\_delta} / \ln(0.8)$ to target an 80% initial acceptance rate. This would eliminate input sensitivity, as $T=500$ might be a random walk for uniformly small capacities or too cold for massive capacities.
+1. **Initial Temperature Calibration:** Currently, the initial temperature $T=500$ is a hardcoded default. A potential better approach would be to sample 200–500 random moves without applying them, compute the average absolute delta, and dynamically set T0 = average_delta / ln(0.8) to target an 80% initial acceptance rate. This would eliminate input sensitivity, as $T=500$ might be a random walk for uniformly small capacities or too cold for massive capacities.
 2. **Rack-Aligned Placement Cursor:** Instead of advancing the placement cursor round-robin for every single server, I could reset it to a random rack after placing $K$ consecutive servers. This creates a less predictable rack distribution, giving the SA a slightly different topological starting point on each run (especially useful if combined with multi-restarts).
 3. **Weighted Objective Relaxation:** The bottleneck function ($\min(gp_i)$) hides all information at a single pool, meaning improvements to non-bottleneck pools score a delta of 0. For roughly 5% of iterations, I could evaluate the delta against a smooth surrogate like $\sum(gp_i) / P$. This allows the algorithm to build up a reserve of capacity "for free," which the bottleneck pool can later draw from.
 4. **Lazy Rack-Domination Detection:** When a server moves, I currently update both affected pools. However, if the rack the server sits in is *not* the worst rack for the donor pool, that pool's score mathematically cannot decrease. Detecting this in $O(1)$ allows me to prune single-move proposals that cannot possibly hurt the donor pool, skipping the Boltzmann calculation entirely.
