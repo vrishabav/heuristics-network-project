@@ -1,4 +1,3 @@
-<img width="617" height="283" alt="image" src="https://github.com/user-attachments/assets/bd84180d-e776-44d6-8705-0ac4af624727" />
 # Heuristics Guild Application: Contest Writeup
 
 ## 1. Understanding the Problem
